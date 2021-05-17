@@ -8,7 +8,14 @@ const client = new Discord.Client({
 });
 
 client.on('ready', async () => {
-  await db();
+  // rebuild commands
+  const commands = await client.api.applications(client.user.id).commands.get();
+  for (var i = 0; i < commands.length; i++) {
+    console.log('Clearing ' + commands[i].name + 'command.');
+    client.api.applications(client.user.id).commands(commands[i].id).delete();
+  }
+
+  //await db();
 
   new WOKCommands(client, { 
     commandsDir: './commands',
