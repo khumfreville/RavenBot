@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const WOKCommands = require('wokcommands');
 require('dotenv').config();
-//const db = require('./util/db');
+const db = require('./util/db');
 console.log('starting RavenBot.');
 console.log(process.env.BOT_TOKEN);
 
@@ -10,7 +10,7 @@ const client = new Discord.Client({
 });
 
 client.on('ready', async () => {
-  //await db();
+  await db();
 
   new WOKCommands(client, { 
     commandsDir: './commands',
