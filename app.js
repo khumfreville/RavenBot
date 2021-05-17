@@ -3,8 +3,6 @@ const WOKCommands = require('wokcommands');
 require('dotenv').config();
 const db = require('./util/db');
 
-console.log(process.env.BOT_TOKEN);
-
 const client = new Discord.Client({
     partials: ['MESSAGE', 'REACTION'],
 });
