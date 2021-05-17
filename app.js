@@ -20,6 +20,7 @@ client.on('ready', async () => {
   });
 
   console.log('RavenBot is ready!');
+  console.log(process.env.MONGO_URI);
 });
 
 client.login(process.env.BOT_TOKEN);
