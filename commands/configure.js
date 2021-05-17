@@ -16,12 +16,7 @@ module.exports = {
         var botOwners = '';
         
         await mongo().then(async (db) => {
-            try {
             botOwners = (await db.getSetting('botowner')).value;
-            } catch(e) {
-                console.log(e);
-            }
-            finally { db.close(); }
         });
         
         if (command != 'set' && setting != 'botowner') {
@@ -81,7 +76,13 @@ module.exports = {
                 var result;
 
                 await mongo().then(async (db) => {
-                    result = await db.getSetting(setting);
+                    try {
+                        result = await db.getSetting(setting);
+                    } catch(e) {
+                        console.log('Error fetching setting: ' + e);
+                    } finally {
+                        console.log('Fetch result: ' + result);
+                    }
                 });
                 
                 if  (result) {
