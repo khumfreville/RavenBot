@@ -15,7 +15,7 @@ client.on('ready', async () => {
     showWarnings: false,
   });
 
-  console.log('RavenBot is ready.');
+  console.log('RavenBot is ready!');
 });
 
 client.login(process.env.BOT_TOKEN);
