@@ -4,7 +4,7 @@ module.exports = {
     slash: 'both',
     description: 'Some information regarding Fearless-Fighters.',
     category: 'Informational',
-    callback: ({ interaction, message }) => {
+    callback: ({ client, interaction, message }) => {
 
         var user = client.api.applications(client.user.id);
         console.log(user);
