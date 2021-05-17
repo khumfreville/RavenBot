@@ -18,6 +18,7 @@ module.exports = {
         await mongo().then(async (db) => {
             botOwners = (await db.getSetting('botowner')).value;
         });
+        console.log('botOwners: ' + botOwners);
         
         if (command != 'set' && setting != 'botowner') {
             if (botOwners == null || !botOwners || botOwners.length == 0) {
