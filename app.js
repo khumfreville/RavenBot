@@ -17,5 +17,4 @@ client.on('ready', async () => {
   });
 });
 
-client.login('ODQyMDg5OTA5MzEyMjkwODI2.YJwPVw.mvqaMmcaaKvSNhazmVGvaasBdGo');
-//client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);
