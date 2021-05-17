@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "start": "app.js",
   "dependencies": {
     "discord.js": "^12.5.3",
     "dotenv": "^9.0.2",
