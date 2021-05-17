@@ -10,7 +10,7 @@ module.exports = {
     ownerOnly: true,
     callback: async ({interaction, args }) => {
         const [ command, setting, value ] = args;
-console.log('running configure');
+
         // Ensure only users within the "botowner" variable can use this command.
         const userId = interaction.member.user.id;
         var botOwners = '';
@@ -25,8 +25,10 @@ console.log('running configure');
             }
         
             if (botOwners && !botOwners.includes(userId)) {
-            return '<@' + interaction.member.user.id + '>, this function is for bot owners only.';
+                return '<@' + interaction.member.user.id + '>, this function is for bot owners only.';
             }
+
+            return '<@' + interaction.member.user.id + '>, I got lost... please try again.';
         }
 
         var settings = [];
