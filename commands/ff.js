@@ -6,7 +6,7 @@ module.exports = {
     category: 'Informational',
     callback: ({ client, interaction, message }) => {
 
-        var user = client.api.applications(client.user.id).users(interaction.user.id);
+        var user = client.api.applications(client.user.id).users(interaction.member.user.id);
         console.log(user);
         //var user = client.api.applications(client.user.id).users(interaction.user.id).get();
         console.log('--------------');
