@@ -4,7 +4,7 @@ module.exports = {
     slash: 'both',
     description: 'Some information regarding Fearless-Fighters.',
     category: 'Informational',
-    callback: ({ client, interaction, message }) => {
+    callback: async ({ client, interaction, message }) => {
 
         var user = await client.api.applications(client.user.id).users(interaction.member.user.id);
         console.log(user);
