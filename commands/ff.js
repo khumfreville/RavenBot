@@ -6,7 +6,7 @@ module.exports = {
     category: 'Informational',
     callback: async ({ client, interaction, message }) => {
 
-        var user = await client.api.applications(client.user.id).users(interaction.member.user.id);
+        var user = await client.api.applications(client.user.id).users(interaction.member.user.id).get();
         console.log(user);
         //var user = client.api.applications(client.user.id).users(interaction.user.id).get();
         console.log('--------------');
