@@ -16,7 +16,12 @@ module.exports = {
         var botOwners = '';
         
         await mongo().then(async (db) => {
+            try {
             botOwners = (await db.getSetting('botowner')).value;
+            } catch(e) {
+                console.log(e);
+            }
+            finally { db.close(); }
         });
         
         if (command != 'set' && setting != 'botowner') {

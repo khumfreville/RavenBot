@@ -8,11 +8,7 @@ const client = new Discord.Client({
 });
 
 client.on('ready', async () => {
-  try {
   await db();
-  } catch (e) { 
-    console.log(e);
-  }
 
   new WOKCommands(client, { 
     commandsDir: './commands',
