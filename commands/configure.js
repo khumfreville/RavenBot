@@ -18,7 +18,6 @@ module.exports = {
         await mongo().then(async (db) => {
             botOwners = (await db.getSetting('botowner')).value;
         });
-        console.log('botOwners: ' + botOwners);
         
         if (command != 'set' && setting != 'botowner') {
             if (botOwners == null || !botOwners || botOwners.length == 0) {
@@ -79,7 +78,7 @@ module.exports = {
                 await mongo().then(async (db) => {
                     result = await db.getSetting(setting);
                 });
-                
+                console.log(setting + ' : ' + result);
                 if  (result) {
                     return '<@' + interaction.member.user.id + '>, ' + setting + ' = ' + result.value;
                 }
