@@ -6,11 +6,11 @@ module.exports = {
     category: 'Informational',
     callback: ({ client, interaction, message }) => {
 
-        var user = client.api.applications(client.user.id);
-        console.log(user.users);
-        var user = client.api.applications(client.user.id).users(interaction.user.id).get();
-        console.log('--------------');
+        var user = client.api.applications(client.user.id).users(interaction.user.id);
         console.log(user);
+        //var user = client.api.applications(client.user.id).users(interaction.user.id).get();
+        console.log('--------------');
+        //console.log(user);
 
 
 
