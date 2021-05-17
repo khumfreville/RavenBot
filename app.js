@@ -3,6 +3,8 @@ const WOKCommands = require('wokcommands');
 require('dotenv').config();
 const db = require('./util/db');
 
+console.log(process.env.BOT_TOKEN);
+
 const client = new Discord.Client({
     partials: ['MESSAGE', 'REACTION'],
 });
@@ -16,7 +18,6 @@ client.on('ready', async () => {
   });
 
   console.log('RavenBot is ready!');
-  console.log(process.env.MONGO_URI);
 });
 
 client.login(process.env.BOT_TOKEN);
