@@ -76,13 +76,7 @@ module.exports = {
                 var result;
 
                 await mongo().then(async (db) => {
-                    try {
-                        result = await db.getSetting(setting);
-                    } catch(e) {
-                        console.log('Error fetching setting: ' + e);
-                    } finally {
-                        console.log('Fetch result: ' + result);
-                    }
+                    result = await db.getSetting(setting);
                 });
                 
                 if  (result) {
