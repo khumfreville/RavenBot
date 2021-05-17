@@ -10,6 +10,9 @@ const client = new Discord.Client({
 client.on('ready', async () => {
   await db();
 
+  const cmds =client().commands.get();
+  console.log(cmds);
+
   new WOKCommands(client, { 
     commandsDir: './commands',
     showWarnings: false,
