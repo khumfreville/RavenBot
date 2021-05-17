@@ -28,7 +28,7 @@ module.exports = {
                 return '<@' + interaction.member.user.id + '>, this function is for bot owners only.';
             }
 
-            return '<@' + interaction.member.user.id + '>, I got lost... please try again.';
+            //return '<@' + interaction.member.user.id + '>, I got lost... please try again.';
         }
 
         var settings = [];
