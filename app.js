@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const WOKCommands = require('wokcommands');
 require('dotenv').config();
-const db = require('./util/db');
+//const db = require('./util/db');
 
 const client = new Discord.Client({
     partials: ['MESSAGE', 'REACTION'],
@@ -9,7 +9,7 @@ const client = new Discord.Client({
 
 client.on('ready', async () => {
 
-  await db();
+  //await db();
 
   new WOKCommands(client, { 
     commandsDir: './commands',
