@@ -17,8 +17,10 @@ module.exports = {
         
         await mongo().then(async (db) => {
             botOwners = (await db.getSetting('botowner')).value;
+        }).catch(err => {
+            console.log(err);
         });
-console.log(command + ' : ' + setting + " : " + value);
+
         if (command != 'set' && setting != 'botowner') {
             if (botOwners == null || !botOwners || botOwners.length == 0) {
                 return '<@' + interaction.member.user.id + '>, no owner has been set!  Please do so with "/configure set botowner <USER_ID>"';
@@ -30,7 +32,7 @@ console.log(command + ' : ' + setting + " : " + value);
 
             //return '<@' + interaction.member.user.id + '>, I got lost... please try again.';
         }
-console.log('past auth check, getting settings collection.');
+
         var settings = [];
         await mongo().then(async (db) => {
             await db.getAllSettings()
@@ -39,12 +41,13 @@ console.log('past auth check, getting settings collection.');
                         settings.push(item.name);
                     });
                 });
+        }).catch(err => {
+            console.log(err);
         });
-console.log('got settings successfully.');
+
         switch (command) {
             default:
             case 'help' : {
-console.log('entered help handler.');                
                 const result = new MessageEmbed();
                 result.setColor('C92C2C');
                 result.setTitle('RavenBot Configuration');
@@ -56,43 +59,45 @@ console.log('entered help handler.');
                 // var u = await client.users.fetch(interaction.member.user.id);
                 // u.send(result);
 
-                // If you want to send it to public chat:
-console.log('returning : ' + result);                
+                // If you want to send it to public chat:        
                 return result;
             }
 
             case 'set': {
-                var result;
+                var returnValue;
                 await mongo().then(async(db) => {
-                    result = await db.putSetting(setting, value);
-                });
-
-                if (result) {
-                    result = '<@' + interaction.member.user.id + '>, ' + setting + ' value updated.';
-                }
-                else {
-                    result = '<@' + interaction.member.user.id + '>, Unable to update value for ' + setting + '.';
-                }
-
-                return result;
-            }
-
-            case 'get': {
-                var result;
-console.log('get: pre-fetch.');
-                await mongo().then(async (db) => {
-                    result = await db.getSetting(setting);
+                    await db.putSetting(setting, value);
                 }).then(result => {
-                    console.log(result);
-                    if  (result) {
-                        return '<@' + interaction.member.user.id + '>, ' + setting + ' = ' + result.value;
+                    if (result) {
+                        returnValue = '<@' + interaction.member.user.id + '>, ' + setting + ' value updated.';
                     }
                     else {
-                        return '<@' + interaction.member.user.id + '>, Setting not found: \"' + setting + '\".\nAvailable settings are: ' + settings;
+                        returnValue = '<@' + interaction.member.user.id + '>, Unable to update value for ' + setting + '.';
                     }
                 }).catch(err => {
                     console.log(err);
                 });
+
+                return returnValue;
+            }
+
+            case 'get': {
+                var returnValue;
+
+                await mongo().then(async (db) => {
+                    await db.getSetting(setting);
+                }).then(result => {
+                    if  (result) {
+                        returnValue = '<@' + interaction.member.user.id + '>, ' + setting + ' = ' + result.value;
+                    }
+                    else {
+                        returnValue = '<@' + interaction.member.user.id + '>, Setting not found: \"' + setting + '\".\nAvailable settings are: ' + settings;
+                    }
+                }).catch(err => {
+                    console.log(err);
+                });
+
+                return returnValue;
             }
         }
     }
