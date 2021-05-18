@@ -43,6 +43,7 @@ console.log('got settings successfully.');
         switch (command) {
             default:
             case 'help' : {
+console.log('entered help handler.');                
                 const result = new MessageEmbed();
                 result.setColor('C92C2C');
                 result.setTitle('RavenBot Configuration');
@@ -55,6 +56,7 @@ console.log('got settings successfully.');
                 // u.send(result);
 
                 // If you want to send it to public chat:
+console.log('returning : ' + result);                
                 return result;
             }
 
