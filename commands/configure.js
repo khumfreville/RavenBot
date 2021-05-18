@@ -85,6 +85,7 @@ console.log('get: pre-fetch.');
                 console.log(setting + ' : ' + result);
                 if  (result) {
 console.log('returning: ' + interaction.member.user.id + ': ' + setting + ' = ' + result.value);
+return interaction.member.user.name + ', ' + setting + ' = ' + result.value;
                     return '<@' + interaction.member.user.id + '>, ' + setting + ' = ' + result.value;
                 }
                 else {
