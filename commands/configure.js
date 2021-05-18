@@ -18,7 +18,7 @@ module.exports = {
         await mongo().then(async (db) => {
             botOwners = (await db.getSetting('botowner')).value;
         });
-        
+console.log('got botowner: ' + botOwners);        
         if (command != 'set' && setting != 'botowner') {
             if (botOwners == null || !botOwners || botOwners.length == 0) {
                 return '<@' + interaction.member.user.id + '>, no owner has been set!  Please do so with "/configure set botowner <USER_ID>"';
@@ -76,7 +76,7 @@ module.exports = {
 
             case 'get': {
                 var result;
-
+console.log('get: pre-fetch.');
                 await mongo().then(async (db) => {
                     result = await db.getSetting(setting);
                 });
