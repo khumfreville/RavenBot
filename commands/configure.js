@@ -84,6 +84,11 @@ module.exports = {
             case 'get': {
                 var returnValue;
 
+                // Since we already have the 'botowners' value, just return it.
+                if  (setting == 'botowner') {
+                    return setting + ' = ' + botOwners;
+                };
+
                 await mongo().then(async (db) => {
                     await db.getSetting(setting);
                 }).then(result => {
