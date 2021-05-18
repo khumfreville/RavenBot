@@ -34,7 +34,7 @@ console.log('past auth check, getting settings collection.');
         var settings = [];
         await mongo().then(async (db) => {
             await db.getAllSettings()
-                .then(results => {
+                .then(async (results) => {
                     await results.forEach((item) => {
                         settings.push(item.name);
                     });
