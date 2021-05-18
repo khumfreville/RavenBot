@@ -33,11 +33,12 @@ console.log(command + ' : ' + setting + " : " + value);
 console.log('past auth check, getting settings collection.');
         var settings = [];
         await mongo().then(async (db) => {
-            const results = await db.getAllSettings();
-
-            await results.forEach((item) => {
-                settings.push(item.name);
-            });
+            await db.getAllSettings()
+                .then(results => {
+                    await results.forEach((item) => {
+                        settings.push(item.name);
+                    });
+                });
         });
 console.log('got settings successfully.');
         switch (command) {
@@ -81,16 +82,17 @@ console.log('returning : ' + result);
 console.log('get: pre-fetch.');
                 await mongo().then(async (db) => {
                     result = await db.getSetting(setting);
+                }).then(result => {
+                    console.log(result);
+                    if  (result) {
+                        return '<@' + interaction.member.user.id + '>, ' + setting + ' = ' + result.value;
+                    }
+                    else {
+                        return '<@' + interaction.member.user.id + '>, Setting not found: \"' + setting + '\".\nAvailable settings are: ' + settings;
+                    }
+                }).catch(err => {
+                    console.log(err);
                 });
-                console.log(setting + ' : ' + result);
-                if  (result) {
-console.log('returning: ' + interaction.member.user.id + ': ' + setting + ' = ' + result.value);
-return interaction.member.user.name + ', ' + setting + ' = ' + result.value;
-                    return '<@' + interaction.member.user.id + '>, ' + setting + ' = ' + result.value;
-                }
-                else {
-                    return '<@' + interaction.member.user.id + '>, Setting not found: \"' + setting + '\".\nAvailable settings are: ' + settings;
-                }
             }
         }
     }
