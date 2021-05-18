@@ -18,7 +18,7 @@ module.exports = {
         await mongo().then(async (db) => {
             botOwners = (await db.getSetting('botowner')).value;
         });
-console.log('got botowner: ' + botOwners);        
+console.log(command + ' : ' + setting + " : " + value);
         if (command != 'set' && setting != 'botowner') {
             if (botOwners == null || !botOwners || botOwners.length == 0) {
                 return '<@' + interaction.member.user.id + '>, no owner has been set!  Please do so with "/configure set botowner <USER_ID>"';
@@ -30,7 +30,7 @@ console.log('got botowner: ' + botOwners);
 
             //return '<@' + interaction.member.user.id + '>, I got lost... please try again.';
         }
-
+console.log('past auth check, getting settings collection.');
         var settings = [];
         await mongo().then(async (db) => {
             const results = await db.getAllSettings();
@@ -39,7 +39,7 @@ console.log('got botowner: ' + botOwners);
                 settings.push(item.name);
             });
         });
-        
+console.log('got settings successfully.');
         switch (command) {
             default:
             case 'help' : {
