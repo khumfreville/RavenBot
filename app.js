@@ -17,7 +17,7 @@ client.on('ready', async () => {
     }
   */
 
-  await db();
+  await db(); 
 
   new WOKCommands(client, { 
     commandsDir: './commands',
