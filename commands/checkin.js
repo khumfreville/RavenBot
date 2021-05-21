@@ -15,7 +15,7 @@ module.exports = {
         var response = '';
         var checkin = '';
 
-        await mongo().then(async (db) => {
+        return await mongo().then(async (db) => {
             try {
                 rollCallCutOffDate = (await db.getSetting(guild, 'rollcallcutoffdate')).value;
                 rollCallChannelId = (await db.getSetting(guild, 'rollcallchannelid')).value;
@@ -49,12 +49,12 @@ module.exports = {
 
                 response = 'Your attendance has been recorded.';
             }
+        }).then(async () => {
+            if (checkin !== '') {
+                await client.channels.cache.get(rollCallChannelId).send(checkin);
+            }
+    
+            return response;
         });
-
-        if (checkin !== '') {
-            client.channels.cache.get(rollCallChannelId).send(checkin);
-        }
-
-        return response;
     }
 };
