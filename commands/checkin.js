@@ -33,10 +33,8 @@ module.exports = {
                 }
 
                 if (content === 'clear') {
-                    await client.channels.cache.get(rollCallChannelId).bulkDelete(100)
-                        .then(() => {
-                            response = 'The roll-call channel has been cleared.'; 
-                        });
+                    client.channels.cache.get(rollCallChannelId).bulkDelete(100);
+                    response = 'The roll-call channel has been cleared.'; 
                 }
                 else if (new Date().getDate() <= rollCallCutOffDate) {
                     if (userName == null || userName.length == 0) {
