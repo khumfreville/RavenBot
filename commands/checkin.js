@@ -35,7 +35,7 @@ module.exports = {
                 if (content === 'clear') {
                     // Clear the channel.
                     await client.channels.cache.get(rollCallChannelId).bulkDelete(100)
-                        .then(() => {
+                        .then(async () => {
                             // Add the "Roll Call Message".
                             await db.getSetting(guild.id, 'rollcallmessage')
                                 .then(async (value) => {
