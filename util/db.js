@@ -54,7 +54,7 @@ module.exports = async () => {
             return result;
         }
     };
-console.log(process.env.MONGODB_URI);
+
     const client = await new mongoClient.MongoClient(process.env.MONGODB_URI, {
             keepAlive: true,
             useNewUrlParser: true,
