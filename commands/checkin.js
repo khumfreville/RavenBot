@@ -18,17 +18,12 @@ module.exports = {
 
         return await mongo()
             .then(async (db) => {
-                return 'ok!';
-            });
-
-        return await mongo()
-            .then(async (db) => {
                 try {
-                    await db.getSetting(guild, 'rollcallcutoffdate')
+                    await db.getSetting(guild.id, 'rollcallcutoffdate')
                         .then(value => {
                             rollCallCutOffDate = value;
                         });
-                    await db.getSetting(guild, 'rollcallchannelid')
+                    await db.getSetting(guild.id, 'rollcallchannelid')
                         .then(value => {
                             rollCallChannelId = value;
                         });
