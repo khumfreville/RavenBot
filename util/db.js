@@ -58,7 +58,8 @@ module.exports = async () => {
     const client = await new mongoClient.MongoClient(process.env.MONGODB_URI, {
             keepAlive: true,
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
+            autoIndex: false,
         });
     await client.connect();
 
