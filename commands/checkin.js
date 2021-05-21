@@ -3,11 +3,12 @@ const mongo = require("../util/db");
 
 module.exports = {
     slash: true,
+    guildOnly: true,
     description: 'Check-in for Roll Call.',
     category: 'Utility',
     minArgs: 0,
     expectedArgs: '[content]',
-    callback: async ({ client, interaction, args }) => {
+    callback: async ({ guild, client, interaction, args }) => {
         const [ content ] = args;
         var rollCallCutOffDate = 10;
         var rollCallChannelId = 'rollcall';
@@ -16,8 +17,8 @@ module.exports = {
 
         await mongo().then(async (db) => {
             try {
-                rollCallCutOffDate = (await db.getSetting('rollcallcutoffdate')).value;
-                rollCallChannelId = (await db.getSetting('rollcallchannelid')).value;
+                rollCallCutOffDate = (await db.getSetting(guild, 'rollcallcutoffdate')).value;
+                rollCallChannelId = (await db.getSetting(guild, 'rollcallchannelid')).value;
             }
             catch (e) {
                 throw e;

@@ -4,7 +4,9 @@ module.exports = {
     slash: 'both',
     description: 'Some information regarding Fearless-Fighters.',
     category: 'Informational',
-    callback: async ({ client, interaction, message }) => {
+    permissions: ['ADMINISTRATOR'],
+    hidden: true,
+    callback: async ({ guild, interaction, message }) => {
         const response = 
         'Website: https://fearless-fighters.engine.com\n' +
         'Teamspeak: fearless-fighters.engine.com (password: FFMPT)\n';
