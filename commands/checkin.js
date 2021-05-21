@@ -33,7 +33,15 @@ module.exports = {
                 }
 
                 if (content === 'clear') {
-                    client.channels.cache.get(rollCallChannelId).bulkDelete(100);
+                    // Clear the channel.
+                    await client.channels.cache.get(rollCallChannelId).bulkDelete(100)
+                        .then(() => {
+                            // Add the "Roll Call Message".
+                            await db.getSetting(guild.id, 'rollcallmessage')
+                                .then(async (value) => {
+                                    await client.channels.cache.get(rollCallChannelId).send(value.value);
+                                });                                
+                        });
                     response = 'The roll-call channel has been cleared.'; 
                 }
                 else if (new Date().getDate() <= rollCallCutOffDate) {
