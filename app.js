@@ -17,8 +17,6 @@ client.on('ready', async () => {
     }
   */
 
-  console.log('starting RavenBot...');
-
   await db();
 
   new WOKCommands(client, { 
