@@ -59,7 +59,6 @@ module.exports = async () => {
             keepAlive: true,
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            autoIndex: false,
         });
     await client.connect();
 
