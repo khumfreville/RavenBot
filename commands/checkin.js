@@ -36,15 +36,6 @@ module.exports = {
                     // Clear the channel.
                     let channel = client.channels.cache.get(rollCallChannelId);
                     
-                    async () => {
-                        let fetched;
-                        do {
-                            fetched = await channel.fetchMessages({limit: 100});
-                            message.channel.bulkDelete(fetched, true);
-                        }
-                        while(fetched.size >= 2);
-                    }
-                    /*
                     await client.channels.cache.get(rollCallChannelId).bulkDelete(100, true)
                         .then(async () => {
                             // Add the "Roll Call Message".
@@ -53,7 +44,6 @@ module.exports = {
                                     await client.channels.cache.get(rollCallChannelId).send(value.value);
                                 });                                
                         });
-                    */
                     response = 'The roll-call channel has been cleared.'; 
                 }
                 else if (new Date().getDate() <= rollCallCutOffDate) {
