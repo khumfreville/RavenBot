@@ -40,7 +40,7 @@ module.exports = {
                         let fetched;
                         do {
                             fetched = await channel.fetchMessages({limit: 100});
-                            message.channel.bulkDelete(fetched);
+                            message.channel.bulkDelete(fetched, true);
                         }
                         while(fetched.size >= 2);
                     }
